@@ -1,0 +1,19 @@
+<div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="navbar-nav ms-auto mx-lg-auto py-0">
+        <a href="{% url 'app_shop:trang_chu' %}" class="nav-item nav-link active">Trang chủ</a>
+        <a href="{% url 'app_shop:gioi_thieu' %}" class="nav-item nav-link">Giới thiệu</a>
+        <a href="#" class="nav-item nav-link">Tin tức</a>
+        <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Sản phẩm</a>
+            <div class="dropdown-menu m-0">
+                {% for danh_muc in danh_sach_danh_muc %}
+                <a href="{% url 'app_shop:danh_muc' danh_muc_id=danh_muc.id %}" class="dropdown-item">
+                    {{ danh_muc.name }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        <a href="{% url 'app_shop:lien_he' %}" class="nav-item nav-link">Liên hệ</a>
+        <a href="{% url 'app_shop:dang_ky' %}" class="nav-item nav-link">Đăng ký</a>
+    </div>
+</div>

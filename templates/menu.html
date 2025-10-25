@@ -1,0 +1,119 @@
+{% extends '_Base.html'%}
+{% load static %}
+{% load humanize %}
+
+{% block title_tab %}Thực đơn{% endblock %}
+
+{% block main_content %}
+<!-- Page Header Start -->
+<div class="container-fluid bg-dark bg-img p-5 mb-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4 text-uppercase text-white">Thực đơn</h1>
+            <a href="">Trang chủ</a>
+            <i class="far fa-square text-primary px-2"></i>
+            <a href="">Thực đơn</a>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+
+<!-- Products Start -->
+<div class="container-fluid about py-5">
+    <div class="container">
+        <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+            <h2 class="text-primary font-secondary">Thực đơn</h2>
+            <h1 class="display-4 text-uppercase">{{ danh_muc_san_pham.name }}</h1>
+        </div>
+        <div class="tab-class text-center">
+
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane fade show p-0 active">
+                    <div class="row g-3">
+
+                        {% for san_pham in danh_sach_san_pham %}
+                        <div class="col-lg-6">
+                            <div class="d-flex h-100">
+                                <div class="flex-shrink-0">
+                                    <img class="img-fluid" src="{{ san_pham.image.url }}" alt="{{ san_pham.name }}"
+                                        style="width: 150px" data-bs-toggle="modal"
+                                        data-bs-target="#sp{{ san_pham.id }}">
+                                    <h4 class="bg-dark text-primary p-2 m-0">
+                                        {{ san_pham.price|intcomma }}
+                                    </h4>
+                                </div>
+                                <div
+                                    class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
+                                    <h5 class="text-uppercase">
+                                        {{ san_pham.name }}
+                                    </h5>
+                                    <span>
+                                        {% if san_pham.description is not None %}
+                                        {{ san_pham.description|safe|truncatewords:36 }}
+                                        {% else%}
+                                        Chưa có thông tin
+                                        {% endif %}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% for san_pham in danh_sach_san_pham %}
+<!-- Modal Start -->
+<div class="modal fade" id="sp{{ san_pham.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{san_pham.name}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-fluid" src="{{ san_pham.image.url }}" alt="{{ san_pham.name }}"
+                            style="width: 150px" data-bs-toggle="modal" data-bs-target="#sp{{ san_pham.id }}">
+
+                    </div>
+                    <div class="col-md-8">
+                        <h2 class="text-uppercase">
+                            {{ san_pham.name }}
+                        </h2>
+                        <h4 class="text-primary p-2 m-0">
+                            {{ san_pham.price|intcomma }}
+                        </h4>
+                        <p>
+                            {% if san_pham.description is not None %}
+                            {{ san_pham.description|safe }}
+                            {% else%}
+                            Chưa có thông tin
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal End -->
+{% endfor %}
+<!-- Products End -->
+
+
+
+
+
+{% endblock %}

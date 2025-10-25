@@ -1,0 +1,60 @@
+{% extends '_Base.html'%}
+{% load static %}
+{% block title_tab %} Đăng ký{% endblock %}
+{% block main_content %}
+
+
+<!-- Page Header Start -->
+<div class="container-fluid bg-dark bg-img p-5 mb-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4 text-uppercase text-white">Đăng ký</h1>
+            <a href="">Trang chủ</a>
+            <i class="far fa-square text-primary px-2"></i>
+            <a href="">Đăng ký</a>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Register Start -->
+<div class="container-fluid contact px-5" style="margin-top: 90px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-sm-12">
+                            {{ thong_bao|safe }}
+                        </div>
+
+                        <div class="col-sm-12">
+                            {{ form_dang_ky.name }}
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_dang_ky.email }}
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_dang_ky.password }}
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_dang_ky.avatar }}
+                        </div>
+                        <div class="col-sm-12">
+                            <button class="btn btn-primary border-inner w-100 py-3" type="submit">
+                                Đăng ký
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Register End -->
+
+
+{% endblock %}
